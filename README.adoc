@@ -1,5 +1,11 @@
 = Prepare your self for UBS Interviews
 
+== Use Case
+
+. User profile
+
+Almost no application now don't have a user profile so we picked it as our first use case.
+
 == Technologies
 
 . JUnit
