@@ -1,0 +1,16 @@
+= Prepare your self for UBS Interviews
+
+== Technologies
+
+. JUnit
+. Hamcrest
+. Mockito
+. JBehave
+
+== Principals
+
+. TDD
+. SOLID
+. KISS
+. YAGNI
+. Package By Feature
