@@ -1,4 +1,4 @@
-= Prepare your self for software engineering concepts and technologies
+= Prepare your self for UBS Interviews
 
 == Use Case
 
@@ -26,3 +26,6 @@ Package-by-feature uses packages to reflect the feature set. It places all items
 == References
 
 * http://java.dzone.com/articles/package-your-classes-feature[]
+* http://plantuml.sourceforge.net/[]
+* http://www.infoq.com/articles/ddd-in-practice[]
+* http://www.tutorialspoint.com/design_pattern[]
