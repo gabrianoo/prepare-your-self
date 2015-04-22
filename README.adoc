@@ -1,4 +1,4 @@
-= Prepare your self for UBS Interviews
+= Prepare your self for software engineering concepts and technologies
 
 == Use Case
 
