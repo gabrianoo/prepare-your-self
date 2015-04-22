@@ -18,7 +18,11 @@ Almost no application now don't have a user profile so we picked it as our first
 . TDD
 . SOLID
 . KISS
+[TIP]
+Keep It Stupid Simple
 . YAGNI
+[TIP]
+You Ant Gonna Need It
 . Aggregation
 [TIP]
 A "uses" B = Aggregation : B exists independently (conceptually) from A
