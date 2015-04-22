@@ -20,3 +20,9 @@ Almost no application now don't have a user profile so we picked it as our first
 . KISS
 . YAGNI
 . Package By Feature
+
+Package-by-feature uses packages to reflect the feature set. It places all items related to a single feature (and only that feature) into a single directory/package. This results in packages with high cohesion and high modularity, and with minimal coupling between packages. Items that work closely together are placed next to each other.
+
+== References
+
+* http://java.dzone.com/articles/package-your-classes-feature[]
