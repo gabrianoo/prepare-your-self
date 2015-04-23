@@ -51,14 +51,10 @@ Package-by-feature uses packages to reflect the feature set. It places all items
 . Created the needed folder for our project link:src/main/java/com/learn[] and link:src/test/java/com/learn[]
 
 . Designed the class diagram of our use case
-
-image:src/main/resources/pic/PrepareYourSelfClassDiagram.png[]
-
-image:src/main/resources/pic/MediaServiceClassDiagram.png[]
-
-image:src/main/resources/pic/UserServiceClassDiagram.png[]
-
-image:src/main/resources/pic/ProfileManagementClassDiagram.png[]
+  image:src/main/resources/pic/PrepareYourSelfClassDiagram.png[]
+  image:src/main/resources/pic/MediaServiceClassDiagram.png[]
+  image:src/main/resources/pic/UserServiceClassDiagram.png[]
+  image:src/main/resources/pic/ProfileManagementClassDiagram.png[]
 
 . Added the Junit dependency to the maven pom file.
 [source,xml]
