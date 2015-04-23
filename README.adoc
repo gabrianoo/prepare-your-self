@@ -3,7 +3,7 @@
 == Use Case
 
 . User profile
-
+[TIP]
 Almost no application now don't have a user profile so we picked it as our first use case.
 
 == Technologies
@@ -32,8 +32,7 @@ Package-by-feature uses packages to reflect the feature set. It places all items
 == Steps
 
 . Created the project link:pom.xml[] file
-
-  [source,xml]
+[source,xml]
   <?xml version="1.0" encoding="UTF-8"?>
   <project xmlns="http://maven.apache.org/POM/4.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -50,8 +49,7 @@ Package-by-feature uses packages to reflect the feature set. It places all items
 . Implemented the empty class diagram image:src/main/resources/pic/ProfileClassDiagram.png[]
 
 . Added the Junit dependency to the maven pom file.
-
-  [source,xml]
+[source,xml]
   <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -60,8 +58,7 @@ Package-by-feature uses packages to reflect the feature set. It places all items
   </dependency>
 
 . Added the Mockito dependency to the maven pom file.
-
-  [source,xml]
+[source,xml]
   <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
