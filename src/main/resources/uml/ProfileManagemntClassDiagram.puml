@@ -1,0 +1,44 @@
+@startuml
+
+package com.learn.management.profile {
+    class Profile {
+        -user : User
+        -media : Media
+        + getters()
+        + setters()
+    }
+
+    class ProfileController {
+        - profileManagement : ProfileManagement
+        + registerProfile(Profile) : void
+        + unRegisterProfile(Integer) : void
+        + updateProfile(Profile) : void
+        + fetchProfile(Integer) : Profile
+        + fetchAllProfiles() : List<Profile>
+    }
+    ProfileController --o Profile
+    ProfileController ..> ProfileManagement
+
+    interface ProfileManagement {
+        + registerProfile(Profile) : void
+        + unRegisterProfile(Integer) : void
+        + updateProfile(Profile) : void
+        + fetchProfile(Integer) : Profile
+        + fetchAllProfiles() : List<Profile>
+    }
+    ProfileManagement <|.. DefaultProfileManagement
+    ProfileManagement ..> Profile
+
+    class DefaultProfileManagement {
+        - mediaService : MediaService
+        - userService : UserService
+        + registerProfile(Profile) : void
+        + unRegisterProfile(Integer) : void
+        + updateProfile(Profile) : void
+        + fetchProfile(Integer) : Profile
+        + fetchAllProfiles() : List<Profile>
+    }
+    DefaultProfileManagement ..> Profile
+}
+
+@enduml

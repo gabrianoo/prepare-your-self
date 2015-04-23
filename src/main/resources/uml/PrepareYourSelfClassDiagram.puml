@@ -1,0 +1,46 @@
+@startuml
+
+package com.learn.service.user {
+    interface User
+
+    interface UserService
+    UserService <|.. DefaultUserService
+
+    class DefaultUserService
+    DefaultUserService ..> User
+}
+
+package com.learn.service.media {
+    interface Media
+
+    interface MediaService
+    MediaService <|.. DefaultMediaService
+
+    class DefaultMediaService
+    DefaultMediaService ..> Media
+}
+
+package com.learn.management.profile {
+    class Profile
+    Profile ..> User
+    Profile ..> Media
+
+    interface ProfileManagement
+    ProfileManagement <|.down. DefaultProfileManagement
+
+    class DefaultProfileManagement
+    DefaultProfileManagement ..> UserService
+    DefaultProfileManagement ..> MediaService
+    DefaultProfileManagement ..> Profile
+}
+
+package com.learn.util {
+    interface Transformer <S, T> {
+        + fromSource(S) : T
+        + fromTarget(T) : S
+    }
+    DefaultUserService o.. Transformer
+    DefaultMediaService o.. Transformer
+}
+
+@enduml
