@@ -12,6 +12,14 @@ package com.learn.service.user {
 
     class UserEntity
     UserEntity -up- UserRepository
+    UserEntity :  - Integer userId
+    UserEntity :  - String userFirstName
+    UserEntity :  - String userLastName
+    UserEntity :  - Calendar userDateOfBirth
+    UserEntity :  - String userEmail
+    UserEntity :  - Integer mediaId
+    UserEntity : + getters()
+    UserEntity : + setters()
 
     interface UserTransformer
 }
