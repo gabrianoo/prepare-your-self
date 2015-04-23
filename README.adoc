@@ -4,7 +4,7 @@
 
 . User profile
 [TIP]
-Almost no application now don't have a user profile so we picked it as our first use case.
+Almost no application now don't have a user profile so we picked it as our first use case. User can create profile that consists of simple user information and his profile picture.
 
 == Technologies
 
@@ -70,8 +70,17 @@ Package-by-feature uses packages to reflect the feature set. It places all items
       <scope>test</scope>
   </dependency>
 
+. Added Google Guava dependency to the maven pom file.
+[source,xml]
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>18.0</version>
+    </dependency>
+
 == References
 
+* http://www.javapractices.com/topic/TopicAction.do?Id=205[]
 * http://java.dzone.com/articles/package-your-classes-feature[]
 * http://plantuml.sourceforge.net/[]
 * http://www.infoq.com/articles/ddd-in-practice[]
