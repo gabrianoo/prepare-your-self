@@ -3,7 +3,7 @@ package com.learn.service.user;
 import java.util.List;
 
 /**
- * {@link UserService} is responsible for manipulating basic user operations.
+ * This interface is responsible for manipulating basic user operations.
  */
 public interface UserService {
 
@@ -18,8 +18,9 @@ public interface UserService {
      * Read a saved {@link User} from the system given this user Id.
      *
      * @param userId as {@link Integer} representing the user Id.
+     * @return a {@link User} business object that holds all the details for the user.
      */
-    void readUser(Integer userId);
+    User readUser(Integer userId);
 
     /**
      * Update a saved {@link User} from the system given the new user information.
