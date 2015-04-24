@@ -9,7 +9,8 @@ public class DefaultUserService implements UserService {
     public void createUser(User user) {
     }
 
-    public void readUser(Integer userId) {
+    public User readUser(Integer userId) {
+        return null;
     }
 
     public void updateUser(User user) {

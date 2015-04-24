@@ -1,9 +1,11 @@
 package com.learn.service.user;
 
+import java.io.Serializable;
+
 /**
  * The contract for the user business object implementation.
  */
-public interface User {
+public interface User extends Serializable {
 
     /**
      * Need the user Id to be able to track the user in our system.
