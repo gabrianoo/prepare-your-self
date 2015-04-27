@@ -5,6 +5,7 @@
 . User profile
 [TIP]
 Almost no application now don't have a user profile so we picked it as our first use case. User can create profile that consists of simple user information and his profile picture.
+  image:src/main/resources/pic/ProfileManagementUseCase.png[]
 
 == Technologies
 

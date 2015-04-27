@@ -1,0 +1,14 @@
+@startuml
+
+left to right direction
+
+User as User
+
+rectangle "Profile Management" {
+  User -> (Register)
+  User -> (Read information)
+  User -> (Update information)
+  User -> (Delete)
+}
+
+@enduml
