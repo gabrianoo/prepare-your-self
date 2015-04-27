@@ -16,7 +16,7 @@ public class DefaultUserService implements UserService {
     public void updateUser(User user) {
     }
 
-    public void deleteUser(User user) {
+    public void deleteUser(Integer userId) {
     }
 
     public List<User> readAllUsers() {
