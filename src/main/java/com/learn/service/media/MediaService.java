@@ -30,7 +30,7 @@ public interface MediaService {
     /**
      * Delete an existing {@link Media} in the system.
      *
-     * @param media business object that holds all the details for the media.
+     * @param mediaId as {@link Integer} representing the media Id.
      */
-    void deleteMedia(Media media);
+    void deleteMedia(Integer mediaId);
 }

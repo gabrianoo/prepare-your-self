@@ -32,9 +32,9 @@ public interface UserService {
     /**
      * Delete an existing {@link User} in the system.
      *
-     * @param user business object that holds all the details for the user.
+     * @param userId as {@link Integer} representing the user Id.
      */
-    void deleteUser(User user);
+    void deleteUser(Integer userId);
 
     /**
      * Read all the saved users from the system.
