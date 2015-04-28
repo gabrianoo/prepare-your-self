@@ -27,9 +27,8 @@ public interface UserService {
      * Update a saved {@link User} from the system given the new user information.
      *
      * @param user business object that holds all the details for the user.
-     * @return a {@link User} business object that holds all the details for the user.
      */
-    User updateUser(User user);
+    void updateUser(User user);
 
     /**
      * Delete an existing {@link User} in the system.

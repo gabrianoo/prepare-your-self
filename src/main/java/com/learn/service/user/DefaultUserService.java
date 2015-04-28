@@ -18,8 +18,7 @@ public class DefaultUserService implements UserService {
         return null;
     }
 
-    public User updateUser(User user) {
-        return null;
+    public void updateUser(User user) {
     }
 
     public void deleteUser(Integer userId) {
