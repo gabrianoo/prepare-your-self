@@ -1,4 +1,6 @@
 package com.learn.service.media;
 
-public interface MediaRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface MediaRepository extends CrudRepository<MediaEntity, Integer> {
 }
