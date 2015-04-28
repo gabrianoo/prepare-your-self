@@ -14,22 +14,22 @@ public class DefaultUserServiceCreateUserTest {
         userService = spy(new DefaultUserService());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserObjectWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserBytesWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserNameWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserExtensionWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
