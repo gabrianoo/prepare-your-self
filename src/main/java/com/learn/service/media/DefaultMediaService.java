@@ -16,7 +16,8 @@ public class DefaultMediaService implements MediaService {
         return null;
     }
 
-    public void updateMedia(Media media) {
+    public Media updateMedia(Media media) {
+        return null;
     }
 
     public void deleteMedia(Integer mediaId) {

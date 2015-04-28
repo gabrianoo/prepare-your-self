@@ -20,9 +20,9 @@ package com.learn.service.media {
 
     class DefaultMediaService {
         - mediaRepository : MediaRepository
-        + createMedia(Media) : void
+        + createMedia(Media) : Media
         + readMedia(Integer) : Media
-        + updateMedia(Media) : void
+        + updateMedia(Media) : Media
         + deleteMedia(Integer) : void
     }
     DefaultMediaService *-- MediaRepository

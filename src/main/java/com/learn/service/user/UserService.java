@@ -11,8 +11,9 @@ public interface UserService {
      * Create a new {@link User} in the system
      *
      * @param user business object that holds all the details for the user.
+     * @return a {@link User} business object that holds all the details for the user.
      */
-    void createUser(User user);
+    User createUser(User user);
 
     /**
      * Read a saved {@link User} from the system given this user Id.
@@ -26,8 +27,9 @@ public interface UserService {
      * Update a saved {@link User} from the system given the new user information.
      *
      * @param user business object that holds all the details for the user.
+     * @return a {@link User} business object that holds all the details for the user.
      */
-    void updateUser(User user);
+    User updateUser(User user);
 
     /**
      * Delete an existing {@link User} in the system.
