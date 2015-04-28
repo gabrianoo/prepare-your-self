@@ -1,0 +1,66 @@
+@startuml
+
+package com.learn.service.user {
+    interface User {
+        + getUserId() : Integer
+        + getUserFullName() : String
+        + getUserAge() : Byte
+        + getUserEmail() : String
+        + getMediaId() : Integer
+    }
+
+    interface UserService {
+        + createUser(User) : void
+        + readUser(Integer) : User
+        + updateUser(User) : void
+        + deleteUser(User) : void
+        + readAllUsers() : List<User>
+    }
+    UserService <|.. DefaultUserService
+    UserService ..> User
+
+    class DefaultUserService {
+        - userRepository : UserRepository
+        + createUser(User) : void
+        + readUser(Integer) : User
+        + updateUser(User) : void
+        + deleteUser(User) : void
+        + readAllUsers() : List<User>
+    }
+    DefaultUserService *-- UserRepository
+    DefaultUserService ..> User
+
+    interface UserRepository
+
+    class UserEntity {
+        - userId : Integer
+        - userFirstName : String
+        - userLastName : String
+        - userDateOfBirth : Calendar
+        - userEmail : String
+        - mediaId : Integer
+        + getters()
+        + setters()
+        + equals(Object) : boolean
+        + hashCode() : int
+        +toString() : String
+    }
+    UserEntity --o UserRepository
+
+    class UserBusinessObject {
+        - userId : Integer
+        - userFirstName : String
+        - userLastName : String
+        - userDateOfBirth : Calendar
+        - userEmail : String
+        - mediaId : Integer
+        + getUserId() : Integer
+        + getFullName() : String
+        + getUserAge() : Byte
+        + getUserEmail() : String
+        + getMediaId() : Integer
+    }
+    User <|.. UserBusinessObject
+}
+
+@enduml

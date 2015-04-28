@@ -1,0 +1,62 @@
+@startuml
+
+package com.learn.service.media {
+    interface Media {
+        + getMediaId() : Integer
+        + getMediaName() : String
+        + getMediaExtension() : String
+        + getMediaBytes() : byte[]
+    }
+
+    interface MediaService {
+        + createMedia(Media) : void
+        + readMedia(Integer) : Media
+        + updateMedia(Media) : void
+        + deleteMedia(Media) : void
+    }
+    MediaService <|.. DefaultMediaService
+    MediaService ..> Media
+    DefaultMediaService ..> Media
+
+    class DefaultMediaService {
+        - mediaRepository : MediaRepository
+        + createMedia(Media) : void
+        + readMedia(Integer) : Media
+        + updateMedia(Media) : void
+        + deleteMedia(Media) : void
+    }
+    DefaultMediaService *-- MediaRepository
+
+    interface MediaRepository
+
+    class MediaEntity {
+        - mediaId : Integer
+        - mediaName : String
+        - mediaExtension : String
+        - mediaBytes : byte[]
+        + getters()
+        + setters()
+        + equals(Object) : boolean
+        + hashCode() : int
+        + toString() : String
+    }
+    MediaEntity --o MediaRepository
+
+    class MediaBusinessObject {
+        - mediaId : Integer
+        - mediaName : String
+        - mediaExtension : String
+        - mediaBytes : byte[]
+        + createMedia(Media) : void
+        + getMediaId() : Integer
+        + getMediaName() : String
+        + getMediaExtension() : String
+        + getMediaBytes() : byte[]
+        + equals(Object) : boolean
+        + hashCode() : int
+        + toString() : String
+    }
+    Media <|.. MediaBusinessObject
+}
+
+@enduml
