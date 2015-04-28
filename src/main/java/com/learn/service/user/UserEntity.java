@@ -14,6 +14,15 @@ public class UserEntity implements Serializable {
     private String userEmail;
     private Integer mediaId;
 
+    public UserEntity(Builder builder) {
+        this.userId = builder.userId;
+        this.userFirstName = builder.userFirstName;
+        this.userLastName = builder.userLastName;
+        this.userDateOfBirth = builder.userDateOfBirth;
+        this.userEmail = builder.userEmail;
+        this.mediaId = builder.mediaId;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -86,5 +95,56 @@ public class UserEntity implements Serializable {
                 "userId=" + userId +
                 ", userEmail='" + userEmail + '\'' +
                 '}';
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    public static final class Builder {
+
+        private Integer userId;
+        private String userFirstName;
+        private String userLastName;
+        private Calendar userDateOfBirth;
+        private String userEmail;
+        private Integer mediaId;
+
+        private Builder() {
+        }
+
+        public Builder userId(Integer userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder userFirstName(String userFirstName) {
+            this.userFirstName = userFirstName;
+            return this;
+        }
+
+        public Builder userLastName(String userLastName) {
+            this.userLastName = userLastName;
+            return this;
+        }
+
+        public Builder userDateOfBirth(Calendar userDateOfBirth) {
+            this.userDateOfBirth = userDateOfBirth;
+            return this;
+        }
+
+        public Builder userEmail(String userEmail) {
+            this.userEmail = userEmail;
+            return this;
+        }
+
+        public Builder mediaId(Integer mediaId) {
+            this.mediaId = mediaId;
+            return this;
+        }
+
+        public UserEntity build() {
+            return new UserEntity(this);
+        }
     }
 }
