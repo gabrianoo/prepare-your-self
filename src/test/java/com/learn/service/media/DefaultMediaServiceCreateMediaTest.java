@@ -2,34 +2,49 @@ package com.learn.service.media;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
 
 public class DefaultMediaServiceCreateMediaTest {
 
-    private final String dummyMediaName;
-    private final String dummyMediaExtension;
-    private final byte[] dummyMediaBytes;
-    {
-        dummyMediaName = "MediaName";
-        dummyMediaExtension = "JPG";
-        dummyMediaBytes = dummyMediaName.getBytes();
-    }
+    private static final Integer dummyMediaId = 1;
+    private static final String dummyMediaName = "MediaName";
+    private static final String dummyMediaExtension = "JPG";
+    private static final byte[] dummyMediaBytes = dummyMediaName.getBytes();
     private static MediaService mediaService;
+    private static final Media dummyMedia = MediaBusinessObject.newBuilder()
+            .mediaId(dummyMediaId)
+            .mediaName(dummyMediaName)
+            .mediaExtension(dummyMediaExtension)
+            .mediaBytes(dummyMediaBytes)
+            .build();
 
     @BeforeClass
     public static void setUp() {
-        mediaService = spy(new DefaultMediaService());
+        MediaRepository mediaRepository = mock(MediaRepository.class);
+        mediaService = new DefaultMediaService();
+        ((DefaultMediaService) mediaService).setMediaRepository(mediaRepository);
+        stub(mediaRepository.save(
+                MediaEntity.newBuilder()
+                        .mediaName(dummyMediaName)
+                        .mediaExtension(dummyMediaExtension)
+                        .mediaBytes(dummyMediaBytes)
+                        .build()
+        )).toReturn(
+                MediaEntity.newBuilder()
+                        .mediaId(dummyMediaId)
+                        .mediaName(dummyMediaName)
+                        .mediaExtension(dummyMediaExtension)
+                        .mediaBytes(dummyMediaBytes)
+                        .build()
+        );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaObjectWhenCreateMediaThenIllegalArgumentExceptionThrown() {
         mediaService.createMedia(null);
-        fail();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -41,7 +56,6 @@ public class DefaultMediaServiceCreateMediaTest {
                         .mediaBytes(null)
                         .build()
         );
-        fail();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -53,7 +67,6 @@ public class DefaultMediaServiceCreateMediaTest {
                         .mediaBytes(dummyMediaBytes)
                         .build()
         );
-        fail();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -65,17 +78,17 @@ public class DefaultMediaServiceCreateMediaTest {
                         .mediaBytes(dummyMediaBytes)
                         .build()
         );
-        fail();
     }
 
     @Test
     public void givenValidMediaObjectWhenCreateMediaThenMediaIsStored() {
-        verify(mediaService, times(1)).createMedia(
+        Media media = mediaService.createMedia(
                 MediaBusinessObject.newBuilder()
                         .mediaName(dummyMediaName)
                         .mediaExtension(dummyMediaExtension)
                         .mediaBytes(dummyMediaBytes)
                         .build()
         );
+        assertThat(media, equalTo(dummyMedia));
     }
 }

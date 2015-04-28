@@ -14,17 +14,17 @@ public class DefaultUserServiceDeleteUserTest {
         mediaService = spy(new DefaultUserService());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserIdWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenInvalidUserIdWhenUpdateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNotExistUserIdWhenReadUserThenIllegalArgumentExceptionThrown() {
 
     }

@@ -14,17 +14,17 @@ public class DefaultMediaServiceReadMediaTest {
         mediaService = spy(new DefaultMediaService());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenInvalidMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNotExistMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
 
     }

@@ -14,37 +14,37 @@ public class DefaultUserServiceUpdateUserTest {
         mediaService = spy(new DefaultUserService());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserObjectWhenUpdateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserIdWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenInvalidUserIdWhenUpdateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNotExistUserIdWhenReadUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserBytesWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserNameWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullUserExtensionWhenCreateUserThenIllegalArgumentExceptionThrown() {
 
     }

@@ -14,37 +14,37 @@ public class DefaultMediaServiceUpdateMediaTest {
         mediaService = spy(new DefaultMediaService());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaObjectWhenUpdateMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaIdWhenCreateMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenInvalidMediaIdWhenUpdateMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNotExistMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaBytesWhenCreateMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaNameWhenCreateMediaThenIllegalArgumentExceptionThrown() {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaExtensionWhenCreateMediaThenIllegalArgumentExceptionThrown() {
 
     }
