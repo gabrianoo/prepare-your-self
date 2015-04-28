@@ -4,7 +4,12 @@ public class DefaultMediaService implements MediaService {
 
     private MediaRepository mediaRepository;
 
-    public void createMedia(Media media) {
+    public void setMediaRepository(MediaRepository mediaRepository) {
+        this.mediaRepository = mediaRepository;
+    }
+
+    public Media createMedia(Media media) {
+        return null;
     }
 
     public Media readMedia(Integer mediaId) {
