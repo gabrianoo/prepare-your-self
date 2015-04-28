@@ -10,14 +10,16 @@ public class DefaultUserService implements UserService {
         this.userRepository = userRepository;
     }
 
-    public void createUser(User user) {
+    public User createUser(User user) {
+        return null;
     }
 
     public User readUser(Integer userId) {
         return null;
     }
 
-    public void updateUser(User user) {
+    public User updateUser(User user) {
+        return null;
     }
 
     public void deleteUser(Integer userId) {

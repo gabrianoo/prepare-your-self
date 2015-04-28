@@ -9,8 +9,9 @@ public interface MediaService {
      * Create a new {@link Media} in the system
      *
      * @param media business object that holds all the details for the media.
+     * @return a {@link Media} business object that holds all the details for the media.
      */
-    void createMedia(Media media);
+    Media createMedia(Media media);
 
     /**
      * Read a saved {@link Media} from the system given this media Id.
@@ -24,8 +25,9 @@ public interface MediaService {
      * Update a saved {@link Media} from the system given the new user information.
      *
      * @param media business object that holds all the details for the media.
+     * @return a {@link Media} business object that holds all the details for the media.
      */
-    void updateMedia(Media media);
+    Media updateMedia(Media media);
 
     /**
      * Delete an existing {@link Media} in the system.
