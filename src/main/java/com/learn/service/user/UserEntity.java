@@ -2,11 +2,18 @@ package com.learn.service.user;
 
 import com.google.common.base.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Calendar;
 
+@Entity
 public class UserEntity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
     private String userFirstName;
     private String userLastName;
