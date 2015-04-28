@@ -25,9 +25,8 @@ public interface MediaService {
      * Update a saved {@link Media} from the system given the new user information.
      *
      * @param media business object that holds all the details for the media.
-     * @return a {@link Media} business object that holds all the details for the media.
      */
-    Media updateMedia(Media media);
+    void updateMedia(Media media);
 
     /**
      * Delete an existing {@link Media} in the system.

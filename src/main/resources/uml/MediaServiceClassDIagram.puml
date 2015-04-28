@@ -22,7 +22,7 @@ package com.learn.service.media {
         - mediaRepository : MediaRepository
         + createMedia(Media) : Media
         + readMedia(Integer) : Media
-        + updateMedia(Media) : Media
+        + updateMedia(Media) : void
         + deleteMedia(Integer) : void
     }
     DefaultMediaService *-- MediaRepository

@@ -23,7 +23,7 @@ package com.learn.service.user {
         - userRepository : UserRepository
         + createUser(User) : User
         + readUser(Integer) : User
-        + updateUser(User) : User
+        + updateUser(User) : void
         + deleteUser(Integer) : void
         + readAllUsers() : List<User>
     }
