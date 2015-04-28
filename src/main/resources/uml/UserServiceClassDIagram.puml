@@ -24,7 +24,7 @@ package com.learn.service.user {
         + createUser(User) : void
         + readUser(Integer) : User
         + updateUser(User) : void
-        + deleteUser(User) : void
+        + deleteUser(Integer) : void
         + readAllUsers() : List<User>
     }
     DefaultUserService *-- UserRepository

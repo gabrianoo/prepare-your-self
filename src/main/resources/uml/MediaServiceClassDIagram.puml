@@ -12,7 +12,7 @@ package com.learn.service.media {
         + createMedia(Media) : void
         + readMedia(Integer) : Media
         + updateMedia(Media) : void
-        + deleteMedia(Media) : void
+        + deleteMedia(Integer) : void
     }
     MediaService <|.. DefaultMediaService
     MediaService ..> Media
@@ -23,7 +23,7 @@ package com.learn.service.media {
         + createMedia(Media) : void
         + readMedia(Integer) : Media
         + updateMedia(Media) : void
-        + deleteMedia(Media) : void
+        + deleteMedia(Integer) : void
     }
     DefaultMediaService *-- MediaRepository
 
