@@ -41,5 +41,5 @@ public interface ProfileManagement {
      *
      * @return a {@link List} of {@link Profile} instances that represent the profiles registered in our system.
      */
-    List<Profile> fetshAllProfiles();
+    List<Profile> fetchAllProfiles();
 }
