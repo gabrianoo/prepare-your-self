@@ -23,7 +23,7 @@ public class DefaultProfileManagement implements ProfileManagement {
         return null;
     }
 
-    public List<Profile> fetshAllProfiles() {
+    public List<Profile> fetchAllProfiles() {
         return null;
     }
 }
