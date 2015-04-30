@@ -5,11 +5,17 @@ import com.learn.service.media.Media;
 import com.learn.service.user.User;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Profile implements Serializable {
 
     private User user;
     private Media media;
+
+    private Profile(Builder builder) {
+        this.user = builder.user;
+        this.media = builder.media;
+    }
 
     public User getUser() {
         return user;
@@ -47,5 +53,32 @@ public class Profile implements Serializable {
                 "user=" + user +
                 ", media=" + media +
                 '}';
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    public static final class Builder {
+
+        private User user;
+        private Media media;
+
+        private Builder() {
+        }
+
+        public Builder user(User user) {
+            this.user = user;
+            return this;
+        }
+
+        public Builder media(Media media) {
+            this.media = media;
+            return this;
+        }
+
+        public Profile build() {
+            return new Profile(this);
+        }
     }
 }
