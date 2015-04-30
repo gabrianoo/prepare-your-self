@@ -20,8 +20,6 @@ public class DefaultMediaServiceDeleteMediaTest {
         mediaService = new DefaultMediaService();
         mediaRepository = mock(MediaRepository.class);
         ((DefaultMediaService) mediaService).setMediaRepository(mediaRepository);
-        doThrow(new IllegalArgumentException())
-                .when(mediaRepository).delete(eq(nonExistMediaId));
         doNothing()
                 .when(mediaRepository).delete(eq(validMediaId));
     }
@@ -44,7 +42,6 @@ public class DefaultMediaServiceDeleteMediaTest {
     @Test
     public void givenValidMediaIdWhenUpdateMediaThenMediaIsDeleted() {
         mediaService.deleteMedia(validMediaId);
-        verify(mediaRepository, times(1))
-                .delete(validMediaId);
+        verify(mediaRepository, times(1)).delete(validMediaId);
     }
 }
