@@ -68,7 +68,7 @@ public class DefaultUserServiceCreateUserTest {
     @Test
     public void givenValidUserObjectWhenCreateUserThenUserIsStored() {
         doReturn(buildValidUserEntity()).
-                when(userRepository.save(buildValidUserEntity()));
+                when(userRepository).save(buildValidUserEntity());
         User user = userService.createUser(
                 UserBusinessObject.newBuilder()
                         .userFirstName(validUserFirstName)

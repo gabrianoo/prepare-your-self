@@ -65,7 +65,7 @@ public class DefaultMediaServiceReadMediaTest {
     @Test
     public void givenValidMediaIdWhenReadMediaThenMediaIsUpdated() {
         doReturn(buildValidMediaEntity())
-                .when(mediaRepository.findOne(validMediaId));
+                .when(mediaRepository).findOne(validMediaId);
         Media media = mediaService.readMedia(validMediaId);
         assertThat(media, equalTo(buildValidMedia()));
     }
