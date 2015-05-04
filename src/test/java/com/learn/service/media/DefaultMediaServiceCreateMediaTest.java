@@ -86,7 +86,7 @@ public class DefaultMediaServiceCreateMediaTest {
     @Test
     public void givenValidMediaObjectWhenCreateMediaThenMediaIsStored() {
         doReturn(buildValidMedia()).
-                when(mediaRepository.save(buildValidMediaEntity()));
+                when(mediaRepository).save(buildValidMediaEntity());
         Media media = mediaService.createMedia(
                 MediaBusinessObject.newBuilder()
                         .mediaName(validMediaName)

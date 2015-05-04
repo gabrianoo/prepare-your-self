@@ -44,12 +44,16 @@ public class DefaultUserServiceReadAllUsersTest {
                 .build();
     }
 
+    private List<UserEntity> buildValidUserEntityList() {
+        List<UserEntity> validUserEntityList = new ArrayList<>();
+        validUserEntityList.add(buildValidUserEntity());
+        validUserEntityList.add(buildValidUserEntity());
+        return validUserEntityList;
+    }
+
     @Test
     public void whenReadAllUserThenAllSystemUsersAreReturned() {
-        List<UserEntity> validUsers = new ArrayList<>();
-        validUsers.add(buildValidUserEntity());
-        validUsers.add(buildValidUserEntity());
-        doReturn(validUsers).
+        doReturn(buildValidUserEntityList()).
                 when(userRepository).findAll();
         List<User> users = userService.readAllUsers();
         for (User user : users) {

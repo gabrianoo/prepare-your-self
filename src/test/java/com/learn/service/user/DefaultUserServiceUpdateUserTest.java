@@ -104,7 +104,7 @@ public class DefaultUserServiceUpdateUserTest {
 
     @Test
     public void givenValidUserObjectWhenUpdateUserThenUserIsUpdated() {
-        doNothing().
+        doReturn(buildValidUserEntity()).
                 when(userRepository).save(buildValidUserEntity());
         userService.updateUser(buildValidUser());
         verify(userRepository, times(1)).save(buildValidUserEntity());
