@@ -16,7 +16,6 @@ import static org.mockito.Mockito.*;
 public class DefaultMediaServiceDeleteMediaTest {
 
     @Inject
-    @Named("defaultMediaService")
     private MediaService mediaService;
     @Inject
     private MediaRepository mediaRepository;

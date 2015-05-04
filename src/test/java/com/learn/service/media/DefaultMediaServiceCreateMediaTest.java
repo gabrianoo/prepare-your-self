@@ -22,7 +22,6 @@ public class DefaultMediaServiceCreateMediaTest {
     private String validMediaExtension = "JPG";
     private byte[] validMediaBytes = validMediaName.getBytes();
     @Inject
-    @Named("defaultMediaService")
     private MediaService mediaService;
     @Inject
     private MediaRepository mediaRepository;

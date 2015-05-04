@@ -23,7 +23,6 @@ public class DefaultUserServiceReadAllUsersTest {
     private final String validUserFirstName = "FirstName";
     private final String validUserEmail = "email@email.com";
     @Inject
-    @Named("defaultUserService")
     private UserService userService;
     @Inject
     private UserRepository userRepository;
