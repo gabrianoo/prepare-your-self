@@ -1,32 +1,31 @@
 package com.learn.service.user;
 
-import com.learn.service.media.MediaBusinessObject;
-import org.junit.BeforeClass;
+import com.learn.configuration.SpringTestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 public class DefaultUserServiceUpdateUserTest {
 
-    private static final Integer validUserId = 1;
-    private static final Integer inValidUserId = -1;
-    private static final Integer nonExistUserId = 2;
-    private static final String validUserFirstName = "FirstName";
-    private static final String validUserEmail = "email@email.com";
-    private static UserRepository userRepository;
-    private static UserService userService;
+    private final Integer validUserId = 1;
+    private final Integer nonExistUserId = 2;
+    private final String validUserFirstName = "FirstName";
+    private final String validUserEmail = "email@email.com";
+    @Inject
+    @Named("defaultUserService")
+    private UserService userService;
+    @Inject
+    private UserRepository userRepository;
 
-    @BeforeClass
-    public static void setUp() {
-        userService = new DefaultUserService();
-        userRepository = mock(UserRepository.class);
-        ((DefaultUserService) userService).setUserRepository(userRepository);
-        doNothing().
-                when(userRepository).save(buildValidUserEntity());
-    }
-
-    private static UserEntity buildValidUserEntity() {
+    private UserEntity buildValidUserEntity() {
         return UserEntity.newBuilder()
                 .userId(validUserId)
                 .userFirstName(validUserFirstName)
@@ -34,7 +33,7 @@ public class DefaultUserServiceUpdateUserTest {
                 .build();
     }
 
-    private static User buildValidUser() {
+    private User buildValidUser() {
         return UserBusinessObject.newBuilder()
                 .userId(validUserId)
                 .userFirstName(validUserFirstName)
@@ -60,6 +59,7 @@ public class DefaultUserServiceUpdateUserTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void givenInvalidUserIdWhenUpdateUserThenIllegalArgumentExceptionThrown() {
+        final Integer inValidUserId = -1;
         userService.updateUser(
                 UserBusinessObject.newBuilder()
                         .userId(inValidUserId)
@@ -104,6 +104,8 @@ public class DefaultUserServiceUpdateUserTest {
 
     @Test
     public void givenValidUserObjectWhenUpdateUserThenUserIsUpdated() {
+        doNothing().
+                when(userRepository).save(buildValidUserEntity());
         userService.updateUser(buildValidUser());
         verify(userRepository, times(1)).save(buildValidUserEntity());
     }

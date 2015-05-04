@@ -1,33 +1,33 @@
 package com.learn.service.media;
 
-import org.junit.BeforeClass;
+import com.learn.configuration.SpringTestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 public class DefaultMediaServiceReadMediaTest {
 
-    private static final Integer validMediaId = 1;
-    private static final String validMediaName = "MediaName";
-    private static final String validMediaExtension = "JPG";
-    private static final byte[] validMediaBytes = validMediaName.getBytes();
-    private static final Integer inValidMediaId = -1;
-    private static final Integer nonExistMediaId = 2;
-    private static MediaService mediaService;
+    private final Integer validMediaId = 1;
+    private final String validMediaName = "MediaName";
+    private final String validMediaExtension = "JPG";
+    private final byte[] validMediaBytes = validMediaName.getBytes();
+    @Inject
+    @Named("defaultMediaService")
+    private MediaService mediaService;
+    @Inject
+    private MediaRepository mediaRepository;
 
-    @BeforeClass
-    public static void setUp() {
-        mediaService = new DefaultMediaService();
-        MediaRepository mediaRepository = mock(MediaRepository.class);
-        ((DefaultMediaService) mediaService).setMediaRepository(mediaRepository);
-        doReturn(buildValidMediaEntity())
-                .when(mediaRepository.findOne(validMediaId));
-    }
-
-    private static MediaEntity buildValidMediaEntity() {
+    private MediaEntity buildValidMediaEntity() {
         return MediaEntity.newBuilder()
                 .mediaId(validMediaId)
                 .mediaName(validMediaName)
@@ -36,7 +36,7 @@ public class DefaultMediaServiceReadMediaTest {
                 .build();
     }
 
-    private static Media buildValidMedia() {
+    private Media buildValidMedia() {
         return MediaBusinessObject.newBuilder()
                 .mediaId(validMediaId)
                 .mediaName(validMediaName)
@@ -52,16 +52,20 @@ public class DefaultMediaServiceReadMediaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void givenInvalidMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
+        final Integer inValidMediaId = -1;
         mediaService.readMedia(inValidMediaId);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNotExistMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
+        final Integer nonExistMediaId = 2;
         mediaService.readMedia(nonExistMediaId);
     }
 
     @Test
     public void givenValidMediaIdWhenReadMediaThenMediaIsUpdated() {
+        doReturn(buildValidMediaEntity())
+                .when(mediaRepository.findOne(validMediaId));
         Media media = mediaService.readMedia(validMediaId);
         assertThat(media, equalTo(buildValidMedia()));
     }
