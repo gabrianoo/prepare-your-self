@@ -22,15 +22,15 @@ Given profile information with missing profile email
 When I register this profile
 Then IllegalArgumentException should be thrown
 
-Given valid profile information with invalid media name
+Given valid profile information with missing media name
 When I register this profile
 Then IllegalArgumentException should be thrown
 
-Given valid profile information with invalid media extension
+Given valid profile information with missing media extension
 When I register this profile
 Then IllegalArgumentException should be thrown
 
-Given valid profile information with invalid media bytes
+Given valid profile information with missing media bytes
 When I register this profile
 Then IllegalArgumentException should be thrown
 
