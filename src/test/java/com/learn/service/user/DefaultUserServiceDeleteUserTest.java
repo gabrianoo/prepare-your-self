@@ -7,7 +7,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import static org.mockito.Mockito.*;
 
@@ -16,7 +15,6 @@ import static org.mockito.Mockito.*;
 public class DefaultUserServiceDeleteUserTest {
 
     @Inject
-    @Named("defaultUserService")
     private UserService userService;
     @Inject
     private UserRepository userRepository;
