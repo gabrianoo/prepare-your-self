@@ -10,31 +10,29 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import javax.inject.Inject;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 
 public class RegisterProfileSteps {
 
-    private final Integer validMediaId = 1;
     private final String validMediaName = "MediaName";
     private final String validMediaExtension = "JPG";
     private final byte[] validMediaBytes = validMediaName.getBytes();
-    private final Integer validUserId = 1;
     private final String validUserFirstName = "FirstName";
     private final String validUserEmail = "email@email.com";
     private ProfileManagement profileManagement;
     private Profile testProfile;
     private Exception exception;
+    @Inject
+    private UserService userService;
+    @Inject
+    private MediaService mediaService;
 
     public RegisterProfileSteps() {
-        UserService userService = mock(UserService.class);
-        MediaService mediaService = mock(MediaService.class);
-        profileManagement = new DefaultProfileManagement();
-        ((DefaultProfileManagement) profileManagement).setUserService(userService);
-        ((DefaultProfileManagement) profileManagement).setMediaService(mediaService);
         doReturn(buildValidUser()).
                 when(userService).createUser(
                 UserBusinessObject.newBuilder()
@@ -53,6 +51,7 @@ public class RegisterProfileSteps {
     }
 
     private User buildValidUser() {
+        final Integer validUserId = 1;
         return UserBusinessObject.newBuilder()
                 .userId(validUserId)
                 .userFirstName(validUserFirstName)
@@ -61,6 +60,7 @@ public class RegisterProfileSteps {
     }
 
     private Media buildValidMedia() {
+        final Integer validMediaId = 1;
         return MediaBusinessObject.newBuilder()
                 .mediaId(validMediaId)
                 .mediaName(validMediaName)

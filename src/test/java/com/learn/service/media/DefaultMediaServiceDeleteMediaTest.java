@@ -1,28 +1,25 @@
 package com.learn.service.media;
 
-import org.junit.BeforeClass;
+import com.learn.configuration.SpringTestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.fail;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 public class DefaultMediaServiceDeleteMediaTest {
 
-
-    private static final Integer validMediaId = 1;
-    private static final Integer inValidMediaId = -1;
-    private static final Integer nonExistMediaId = 2;
-    private static MediaService mediaService;
-    private static MediaRepository mediaRepository;
-
-    @BeforeClass
-    public static void setUp() {
-        mediaService = new DefaultMediaService();
-        mediaRepository = mock(MediaRepository.class);
-        ((DefaultMediaService) mediaService).setMediaRepository(mediaRepository);
-        doNothing()
-                .when(mediaRepository).delete(eq(validMediaId));
-    }
+    @Inject
+    @Named("defaultMediaService")
+    private MediaService mediaService;
+    @Inject
+    private MediaRepository mediaRepository;
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNullMediaIdWhenCreateMediaThenIllegalArgumentExceptionThrown() {
@@ -31,16 +28,21 @@ public class DefaultMediaServiceDeleteMediaTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void givenInvalidMediaIdWhenUpdateMediaThenIllegalArgumentExceptionThrown() {
+        final Integer inValidMediaId = -1;
         mediaService.deleteMedia(inValidMediaId);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNotExistMediaIdWhenReadMediaThenIllegalArgumentExceptionThrown() {
+        final Integer nonExistMediaId = 2;
         mediaService.deleteMedia(nonExistMediaId);
     }
 
     @Test
     public void givenValidMediaIdWhenUpdateMediaThenMediaIsDeleted() {
+        final Integer validMediaId = 1;
+        doNothing()
+                .when(mediaRepository).delete(eq(validMediaId));
         mediaService.deleteMedia(validMediaId);
         verify(mediaRepository, times(1)).delete(validMediaId);
     }

@@ -1,26 +1,25 @@
 package com.learn.service.user;
 
-import org.junit.BeforeClass;
+import com.learn.configuration.SpringTestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 public class DefaultUserServiceDeleteUserTest {
 
-    private static final Integer validUserId = 1;
-    private static final Integer inValidUserId = -1;
-    private static final Integer nonExistUserId = 2;
-    private static UserService userService;
-    private static UserRepository userRepository;
-
-    @BeforeClass
-    public static void setUp(){
-        userRepository = mock(UserRepository.class);
-        userService = new DefaultUserService();
-        ((DefaultUserService) userService).setUserRepository(userRepository);
-        doNothing()
-                .when(userRepository).delete(eq(validUserId));
-    }
+    @Inject
+    @Named("defaultUserService")
+    private UserService userService;
+    @Inject
+    private UserRepository userRepository;
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNullUserIdWhenCreateUserThenIllegalArgumentExceptionThrown() {
@@ -29,16 +28,21 @@ public class DefaultUserServiceDeleteUserTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void givenInvalidUserIdWhenUpdateUserThenIllegalArgumentExceptionThrown() {
+        final Integer inValidUserId = -1;
         userService.deleteUser(inValidUserId);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void givenNotExistUserIdWhenReadUserThenIllegalArgumentExceptionThrown() {
+        final Integer nonExistUserId = 2;
         userService.deleteUser(nonExistUserId);
     }
 
     @Test
     public void givenValidUserIdWhenUpdateUserThenUserIsDeleted() {
+        final Integer validUserId = 1;
+        doNothing()
+                .when(userRepository).delete(eq(validUserId));
         userService.deleteUser(validUserId);
         verify(userRepository, times(1)).delete(validUserId);
     }

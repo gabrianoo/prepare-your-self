@@ -1,30 +1,32 @@
 package com.learn.service.user;
 
-import org.junit.BeforeClass;
+import com.learn.configuration.SpringTestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
 public class DefaultUserServiceCreateUserTest {
 
-    private static final Integer validUserId = 1;
-    private static final String validUserFirstName = "FirstName";
-    private static final String validUserEmail = "email@email.com";
-    private static UserService userService;
+    private final Integer validUserId = 1;
+    private final String validUserFirstName = "FirstName";
+    private final String validUserEmail = "email@email.com";
+    @Inject
+    @Named("defaultUserService")
+    private UserService userService;
+    @Inject
+    private UserRepository userRepository;
 
-    @BeforeClass
-    public static void setUp() {
-        UserRepository userRepository = mock(UserRepository.class);
-        userService = new DefaultUserService();
-        ((DefaultUserService) userService).setUserRepository(userRepository);
-        doReturn(buildValidUser()).
-                when(userRepository.save(buildValidUserEntity()));
-    }
-
-    private static User buildValidUser() {
+    private User buildValidUser() {
         return UserBusinessObject.newBuilder()
                 .userId(validUserId)
                 .userFirstName(validUserFirstName)
@@ -32,7 +34,7 @@ public class DefaultUserServiceCreateUserTest {
                 .build();
     }
 
-    private static UserEntity buildValidUserEntity() {
+    private UserEntity buildValidUserEntity() {
         return UserEntity.newBuilder()
                 .userId(validUserId)
                 .userFirstName(validUserFirstName)
@@ -65,6 +67,8 @@ public class DefaultUserServiceCreateUserTest {
 
     @Test
     public void givenValidUserObjectWhenCreateUserThenUserIsStored() {
+        doReturn(buildValidUserEntity()).
+                when(userRepository.save(buildValidUserEntity()));
         User user = userService.createUser(
                 UserBusinessObject.newBuilder()
                         .userFirstName(validUserFirstName)
