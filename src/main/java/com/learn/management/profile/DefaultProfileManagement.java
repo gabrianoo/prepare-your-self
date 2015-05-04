@@ -10,6 +10,14 @@ public class DefaultProfileManagement implements ProfileManagement {
     private UserService userService;
     private MediaService mediaService;
 
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setMediaService(MediaService mediaService) {
+        this.mediaService = mediaService;
+    }
+
     public void registerProfile(Profile profile) {
     }
 
