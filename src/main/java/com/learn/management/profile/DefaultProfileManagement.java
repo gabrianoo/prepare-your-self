@@ -3,20 +3,19 @@ package com.learn.management.profile;
 import com.learn.service.media.MediaService;
 import com.learn.service.user.UserService;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.List;
 
+@Named
+@Singleton
 public class DefaultProfileManagement implements ProfileManagement {
 
+    @Inject
     private UserService userService;
+    @Inject
     private MediaService mediaService;
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public void setMediaService(MediaService mediaService) {
-        this.mediaService = mediaService;
-    }
 
     public void registerProfile(Profile profile) {
     }

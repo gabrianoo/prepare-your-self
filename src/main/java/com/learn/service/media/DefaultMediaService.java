@@ -1,12 +1,15 @@
 package com.learn.service.media;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+@Named
+@Singleton
 public class DefaultMediaService implements MediaService {
 
+    @Inject
     private MediaRepository mediaRepository;
-
-    public void setMediaRepository(MediaRepository mediaRepository) {
-        this.mediaRepository = mediaRepository;
-    }
 
     public Media createMedia(Media media) {
         return null;
