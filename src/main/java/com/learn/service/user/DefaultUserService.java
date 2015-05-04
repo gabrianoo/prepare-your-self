@@ -1,14 +1,16 @@
 package com.learn.service.user;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.List;
 
+@Named
+@Singleton
 public class DefaultUserService implements UserService {
 
+    @Inject
     private UserRepository userRepository;
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public User createUser(User user) {
         return null;
