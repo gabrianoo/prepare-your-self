@@ -65,7 +65,7 @@ public class MyStories extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        ApplicationContext context = new SpringApplicationContextFactory("my_steps.xml").createApplicationContext();
+        ApplicationContext context = new SpringApplicationContextFactory("bdd-context.xml").createApplicationContext();
         return new SpringStepsFactory(configuration(), context);
     }
 
