@@ -38,7 +38,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
     private MediaService mediaService;
 
     @PostConstruct
-    public void initializeDefaultProfileManagementRegisterProfileSteps() {
+    public void initializeDefaultProfileManagementUpdateProfileSteps() {
         doReturn(buildValidUser()).
                 when(userService).createUser(
                 UserBusinessObject.newBuilder()
