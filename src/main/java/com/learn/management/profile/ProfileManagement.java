@@ -17,9 +17,9 @@ public interface ProfileManagement {
     /**
      * The user should be able to un-register (remove) his profile from our system.
      *
-     * @param profile a {@link Profile} instance that represent the complete user profile the user want to register.
+     * @param profileId an {@link Integer} representing the user id that we want to fetch his complete profile.
      */
-    void unRegisterProfile(Profile profile);
+    void unRegisterProfile(Integer profileId);
 
     /**
      * The user should be able to update his profile in our system.

@@ -20,7 +20,7 @@ public class DefaultProfileManagement implements ProfileManagement {
     public void registerProfile(Profile profile) {
     }
 
-    public void unRegisterProfile(Profile profile) {
+    public void unRegisterProfile(Integer profile) {
     }
 
     public void updateProfile(Profile profile) {
