@@ -10,20 +10,25 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doReturn;
 
-public class RegisterProfileSteps {
+@Named
+public class DefaultProfileManagementRegisterProfileSteps {
 
     private final String validMediaName = "MediaName";
     private final String validMediaExtension = "JPG";
     private final byte[] validMediaBytes = validMediaName.getBytes();
     private final String validUserFirstName = "FirstName";
     private final String validUserEmail = "email@email.com";
+    @Inject
+    @Named("defaultProfileManagement")
     private ProfileManagement profileManagement;
     private Profile testProfile;
     private Exception exception;
@@ -32,7 +37,8 @@ public class RegisterProfileSteps {
     @Inject
     private MediaService mediaService;
 
-    public RegisterProfileSteps() {
+    @PostConstruct
+    public void initializeDefaultProfileManagementRegisterProfileSteps() {
         doReturn(buildValidUser()).
                 when(userService).createUser(
                 UserBusinessObject.newBuilder()
