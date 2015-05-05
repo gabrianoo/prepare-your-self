@@ -89,7 +89,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
     }
 
     @Given("valid user and no media for profile update")
-    public void givenValidUserAndNoMedia() {
+    public void givenValidUserAndNoMediaForProfileUpdate() {
         testProfile = Profile.newBuilder()
                 .user(
                         UserBusinessObject.newBuilder()
@@ -111,7 +111,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
     }
 
     @Given("no user and valid media for profile update")
-    public void givenNoUserAndValidMedia() {
+    public void givenNoUserAndValidMediaForProfileUpdate() {
         testProfile = Profile.newBuilder()
                 .media(
                         MediaBusinessObject.newBuilder()
@@ -135,7 +135,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
     }
 
     @Given("valid user and valid media for profile update")
-    public void givenValidUserAndValidMedia() {
+    public void givenValidUserAndValidMediaForProfileUpdate() {
         testProfile = Profile.newBuilder()
                 .user(
                         UserBusinessObject.newBuilder()

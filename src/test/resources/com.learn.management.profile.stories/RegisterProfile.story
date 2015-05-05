@@ -10,30 +10,14 @@ I want to register my profile on the system
 
 Scenario: Registering new profile in our system
 
-Given valid profile information without media
-When I register this profile
-Then profile should be saved successfully
+Given valid user and no media for profile register
+When register profile with valid user and no media
+Then profile with valid user and no media registered
 
-Given profile information with missing profile first name
-When I register this profile
-Then IllegalArgumentException should be thrown
+Given no user and valid media for profile register
+When register profile with no user and valid media
+Then IllegalArgumentException should be thrown for missing user
 
-Given profile information with missing profile email
-When I register this profile
-Then IllegalArgumentException should be thrown
-
-Given valid profile information with missing media name
-When I register this profile
-Then IllegalArgumentException should be thrown
-
-Given valid profile information with missing media extension
-When I register this profile
-Then IllegalArgumentException should be thrown
-
-Given valid profile information with missing media bytes
-When I register this profile
-Then IllegalArgumentException should be thrown
-
-Given valid profile information with valid media
-When I register this profile
-Then profile should be saved successfully
+Given valid user and valid media for profile register
+When register profile with valid user and valid media
+Then profile with valid user and valid media registered
