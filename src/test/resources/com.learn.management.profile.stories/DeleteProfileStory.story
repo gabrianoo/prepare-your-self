@@ -1,11 +1,15 @@
 Meta:
 
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+@category basic
+@color blue
 
-Scenario: scenario description
-Given a system state
-When I do something
-Then system is in a different state
+Narrative:
+In order to show the basic profile functionality
+As a user
+I want to delete my profile on the system
+
+Scenario: Un Registering a profile in our system
+
+Given valid user id for un registering
+When un registering profile with valid user id
+Then profile with valid user id un registered
