@@ -88,7 +88,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
                 .build();
     }
 
-    @Given("valid user and no media")
+    @Given("valid user and no media for profile update")
     public void givenValidUserAndNoMedia() {
         testProfile = Profile.newBuilder()
                 .user(
@@ -110,7 +110,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
         assertThat(buildValidProfileWithoutMedia(), equalTo(testProfile));
     }
 
-    @Given("no user and valid media")
+    @Given("no user and valid media for profile update")
     public void givenNoUserAndValidMedia() {
         testProfile = Profile.newBuilder()
                 .media(
@@ -134,7 +134,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
         assertThat(buildValidProfileWithoutMedia(), equalTo(testProfile));
     }
 
-    @Given("valid user and valid media")
+    @Given("valid user and valid media for profile update")
     public void givenValidUserAndValidMedia() {
         testProfile = Profile.newBuilder()
                 .user(
