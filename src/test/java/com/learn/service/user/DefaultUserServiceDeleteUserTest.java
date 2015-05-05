@@ -1,6 +1,6 @@
 package com.learn.service.user;
 
-import com.learn.configuration.SpringTestConfiguration;
+import com.learn.configuration.TddSpringConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringTestConfiguration.class)
+@SpringApplicationConfiguration(classes = TddSpringConfiguration.class)
 public class DefaultUserServiceDeleteUserTest {
 
     @Inject

@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 
 @Configuration
 @ComponentScan(basePackages = "com.learn")
-public class SpringTestConfiguration {
+public class TddSpringConfiguration {
 
     @Bean
     public MediaRepository getMediaRepository() {
