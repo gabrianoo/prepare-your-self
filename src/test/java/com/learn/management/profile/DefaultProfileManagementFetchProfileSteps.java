@@ -50,7 +50,6 @@ public class DefaultProfileManagementFetchProfileSteps {
     }
 
     private Profile buildValidProfileWithoutMedia() {
-
         return Profile.newBuilder()
                 .user(
                         buildValidUser()
@@ -64,7 +63,7 @@ public class DefaultProfileManagementFetchProfileSteps {
 
     @When("fetching profile with valid profile user id")
     public void fetchingProfileWithValidProfileUserId() {
-        profileManagement.fetchProfile(testProfileUserId);
+        testProfile = profileManagement.fetchProfile(testProfileUserId);
     }
 
     @Then("profile with valid profile user id fetched")
