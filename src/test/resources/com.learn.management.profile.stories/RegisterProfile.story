@@ -16,7 +16,7 @@ Then profile with valid user and no media registered
 
 Given no user and valid media for profile register
 When register profile with no user and valid media
-Then IllegalArgumentException should be thrown for missing user
+Then IllegalArgumentException should be thrown for missing user when register
 
 Given valid user and valid media for profile register
 When register profile with valid user and valid media

@@ -130,8 +130,8 @@ public class DefaultProfileManagementRegisterProfileSteps {
         }
     }
 
-    @Then("$exceptionClassName should be thrown for missing user")
-    public void exceptionShouldBeThrownForMissingUser(String exceptionClassName) throws ClassNotFoundException {
+    @Then("$exceptionClassName should be thrown for missing user when register")
+    public void exceptionShouldBeThrownForMissingUserWhenRegister(String exceptionClassName) throws ClassNotFoundException {
         Class<?> exceptionClass = Class.forName(exceptionClassName);
         if (exception != null && exceptionClass.isInstance(exception)) {
             exception = null;
