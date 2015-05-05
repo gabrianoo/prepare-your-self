@@ -3,6 +3,7 @@ package com.learn;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import com.learn.configuration.BddSpringConfiguration;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -21,6 +22,7 @@ import org.jbehave.core.steps.ParameterConverters.ExamplesTableConverter;
 import org.jbehave.core.steps.spring.SpringApplicationContextFactory;
 import org.jbehave.core.steps.spring.SpringStepsFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
@@ -65,7 +67,7 @@ public class MyStories extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        ApplicationContext context = new SpringApplicationContextFactory("bdd-context.xml").createApplicationContext();
+        ApplicationContext context = new AnnotationConfigApplicationContext(BddSpringConfiguration.class);
         return new SpringStepsFactory(configuration(), context);
     }
 
