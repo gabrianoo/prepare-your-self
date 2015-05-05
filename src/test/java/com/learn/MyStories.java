@@ -65,7 +65,6 @@ public class MyStories extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        String path = "com.learn".replaceAll("\\.", "/");
         ApplicationContext context = new SpringApplicationContextFactory("my_steps.xml").createApplicationContext();
         return new SpringStepsFactory(configuration(), context);
     }
