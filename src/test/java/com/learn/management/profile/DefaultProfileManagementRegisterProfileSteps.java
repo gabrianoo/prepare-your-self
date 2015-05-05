@@ -88,8 +88,8 @@ public class DefaultProfileManagementRegisterProfileSteps {
                 .build();
     }
 
-    @Given("valid profile information without media")
-    public void createValidProfileWithoutMedia() {
+    @Given("valid user and no media for profile register")
+    public void validUserAndNoMediaForProfileRegister() {
         testProfile = Profile.newBuilder()
                 .user(
                         UserBusinessObject.newBuilder()
@@ -99,18 +99,49 @@ public class DefaultProfileManagementRegisterProfileSteps {
                 ).build();
     }
 
-    @When("I register this profile")
-    public void registerValidProfileWithoutMedia() {
+    @When("register profile with valid user and no media")
+    public void registerProfileWithValidUserAndNoMedia() {
         profileManagement.registerProfile(testProfile);
     }
 
-    @Then("profile should be saved successfully")
-    public void checkIsTheValidProfileWithoutMediaSaved() {
+    @Then("profile with valid user and no media registered")
+    public void profileWithValidUserAndNoMediaRegistered() {
         assertThat(buildValidProfileWithoutMedia(), equalTo(testProfile));
     }
 
-    @Given("valid profile information with valid media")
-    public void createValidProfileWithMedia() {
+    @Given("no user and valid media for profile register")
+    public void noUserAndValidMediaForProfileRegister() {
+        testProfile = Profile.newBuilder()
+                .media(
+                        MediaBusinessObject.newBuilder()
+                                .mediaName(validMediaName)
+                                .mediaExtension(validMediaExtension)
+                                .mediaBytes(validMediaBytes)
+                                .build()
+                ).build();
+    }
+
+    @When("register profile with no user and valid media")
+    public void registerProfileWithNoUserAndValidMedia() {
+        try {
+            profileManagement.registerProfile(testProfile);
+        } catch (Exception ex) {
+            exception = ex;
+        }
+    }
+
+    @Then("$exceptionClassName should be thrown for missing user")
+    public void exceptionShouldBeThrownForMissingUser(String exceptionClassName) throws ClassNotFoundException {
+        Class<?> exceptionClass = Class.forName(exceptionClassName);
+        if (exception != null && exceptionClass.isInstance(exception)) {
+            exception = null;
+        } else {
+            fail();
+        }
+    }
+
+    @Given("valid user and valid media for profile register")
+    public void validUserAndValidMediaForProfileRegister() {
         testProfile = Profile.newBuilder()
                 .user(
                         UserBusinessObject.newBuilder()
@@ -127,182 +158,13 @@ public class DefaultProfileManagementRegisterProfileSteps {
                 ).build();
     }
 
-    @When("I register this profile")
-    public void registerValidProfileWithMedia() {
+    @When("register profile with valid user and valid media")
+    public void registerProfileWithValidUserAndValidMedia() {
         profileManagement.registerProfile(testProfile);
     }
 
-    @Then("profile should be saved successfully")
-    public void checkIsTheValidProfileWithMediaSaved() {
+    @Then("profile with valid user and valid media registered")
+    public void profileWithValidUserAndValidMediaRegistered() {
         assertThat(buildValidProfileWithMedia(), equalTo(testProfile));
     }
-
-    @Given("profile information with missing profile first name")
-    public void createProfileWithMissingUserFirstName() {
-        testProfile = Profile.newBuilder()
-                .user(
-                        UserBusinessObject.newBuilder()
-                                .userEmail(validUserEmail)
-                                .build()
-                )
-                .build();
-    }
-
-    @When("I register this profile")
-    public void registerProfileWithMissingUserFirstName() {
-        try {
-            profileManagement.registerProfile(testProfile);
-        } catch (Exception ex) {
-            exception = ex;
-        }
-    }
-
-    @Then("$exceptionClassName should be thrown")
-    public void checkIsTheProfileWithMissingUserFirstNameThrowsException(String exceptionClassName) throws ClassNotFoundException {
-        Class<?> exceptionClass = Class.forName(exceptionClassName);
-        if (exception != null && exceptionClass.isInstance(exception)) {
-            exception = null;
-        } else {
-            fail();
-        }
-    }
-
-    @Given("profile information with missing profile email")
-    public void createProfileWithMissingUserEmail() {
-        testProfile = Profile.newBuilder()
-                .user(
-                        UserBusinessObject.newBuilder()
-                                .userFirstName(validUserFirstName)
-                                .build()
-                )
-                .build();
-    }
-
-    @When("I register this profile")
-    public void registerProfileWithMissingUserEmail() {
-        try {
-            profileManagement.registerProfile(testProfile);
-        } catch (Exception ex) {
-            exception = ex;
-        }
-    }
-
-    @Then("$exceptionClassName should be thrown")
-    public void checkIsTheProfileWithMissingUserEmailThrowsException(String exceptionClassName) throws ClassNotFoundException {
-        Class<?> exceptionClass = Class.forName(exceptionClassName);
-        if (exception != null && exceptionClass.isInstance(exception)) {
-            exception = null;
-        } else {
-            fail();
-        }
-    }
-
-    @Given("valid profile information with missing media name")
-    public void createProfileWithValidUserAndMissingMediaName() {
-        testProfile = Profile.newBuilder()
-                .user(
-                        UserBusinessObject.newBuilder()
-                                .userFirstName(validUserFirstName)
-                                .userEmail(validUserEmail)
-                                .build()
-                ).media(
-                        MediaBusinessObject.newBuilder()
-                                .mediaExtension(validMediaExtension)
-                                .mediaBytes(validMediaBytes)
-                                .build()
-                )
-                .build();
-    }
-
-    @When("I register this profile")
-    public void registerProfileWithValidUserAndMissingMediaName() {
-        try {
-            profileManagement.registerProfile(testProfile);
-        } catch (Exception ex) {
-            exception = ex;
-        }
-    }
-
-    @Then("$exceptionClassName should be thrown")
-    public void checkIsTheProfileWithValidUserAndMissingMediaNameThrowsException(String exceptionClassName) throws ClassNotFoundException {
-        Class<?> exceptionClass = Class.forName(exceptionClassName);
-        if (exception != null && exceptionClass.isInstance(exception)) {
-            exception = null;
-        } else {
-            fail();
-        }
-    }
-
-    @Given("valid profile information with missing media extension")
-    public void createProfileWithValidUserAndMissingMediaExtention() {
-        testProfile = Profile.newBuilder()
-                .user(
-                        UserBusinessObject.newBuilder()
-                                .userFirstName(validUserFirstName)
-                                .userEmail(validUserEmail)
-                                .build()
-                ).media(
-                        MediaBusinessObject.newBuilder()
-                                .mediaName(validMediaName)
-                                .mediaBytes(validMediaBytes)
-                                .build()
-                )
-                .build();
-    }
-
-    @When("I register this profile")
-    public void registerProfileWithValidUserAndMissingMediaExtention() {
-        try {
-            profileManagement.registerProfile(testProfile);
-        } catch (Exception ex) {
-            exception = ex;
-        }
-    }
-
-    @Then("$exceptionClassName should be thrown")
-    public void checkIsTheProfileWithValidUserAndMissingMediaExtentionThrowsException(String exceptionClassName) throws ClassNotFoundException {
-        Class<?> exceptionClass = Class.forName(exceptionClassName);
-        if (exception != null && exceptionClass.isInstance(exception)) {
-            exception = null;
-        } else {
-            fail();
-        }
-    }
-
-    @Given("valid profile information with missing media bytes")
-    public void createProfileWithValidUserAndMissingMediaBytes() {
-        testProfile = Profile.newBuilder()
-                .user(
-                        UserBusinessObject.newBuilder()
-                                .userFirstName(validUserFirstName)
-                                .userEmail(validUserEmail)
-                                .build()
-                ).media(
-                        MediaBusinessObject.newBuilder()
-                                .mediaName(validMediaName)
-                                .mediaExtension(validMediaExtension)
-                                .build()
-                )
-                .build();
-    }
-
-    @When("I register this profile")
-    public void registerProfileWithValidUserAndMissingMediaBytes() {
-        try {
-            profileManagement.registerProfile(testProfile);
-        } catch (Exception ex) {
-            exception = ex;
-        }
-    }
-
-    @Then("$exceptionClassName should be thrown")
-    public void checkIsTheProfileWithValidUserAndMissingMediaBytesThrowsException(String exceptionClassName) throws ClassNotFoundException {
-        Class<?> exceptionClass = Class.forName(exceptionClassName);
-        if (exception != null && exceptionClass.isInstance(exception)) {
-            exception = null;
-        } else {
-            fail();
-        }
-    }
-
 }
