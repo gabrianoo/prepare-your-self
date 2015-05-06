@@ -1,6 +1,5 @@
 package com.learn.management.profile;
 
-import com.learn.service.media.MediaBusinessObject;
 import com.learn.service.user.User;
 import com.learn.service.user.UserBusinessObject;
 import com.learn.service.user.UserService;
@@ -14,12 +13,17 @@ import javax.inject.Named;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 
 @Named
 public class DefaultProfileManagementFetchProfileSteps {
 
     private final Integer validUserId = 1;
+    private final Integer missingUserId = null;
+    private final Integer inValidUserId = 2;
+    private Exception exception;
     final String validUserFirstName = "FirstName";
     final String validUserEmail = "email@email.com";
     @Inject
@@ -33,12 +37,11 @@ public class DefaultProfileManagementFetchProfileSteps {
     @PostConstruct
     public void initializeDefaultProfileManagementFetchingProfileSteps() {
         doReturn(buildValidUser()).
-                when(userService).createUser(
-                UserBusinessObject.newBuilder()
-                        .userFirstName(validUserFirstName)
-                        .userEmail(validUserEmail)
-                        .build()
-        );
+                when(userService).readUser(validUserId);
+        doThrow(IllegalArgumentException.class)
+                .when(userService).readUser(inValidUserId);
+        doThrow(IllegalArgumentException.class)
+                .when(userService).readUser(missingUserId);
     }
 
     private User buildValidUser() {
@@ -56,18 +59,66 @@ public class DefaultProfileManagementFetchProfileSteps {
                 ).build();
     }
 
-    @Given("valid profile user id for fetching")
-    public void validProfileUserIdForFetching() {
+    @Given("valid user id for fetching")
+    public void validUserIdForFetching() {
         testProfileUserId = 1;
     }
 
-    @When("fetching profile with valid profile user id")
-    public void fetchingProfileWithValidProfileUserId() {
+    @When("fetching profile with valid user id")
+    public void fetchingProfileWithValidUserId() {
         testProfile = profileManagement.fetchProfile(testProfileUserId);
     }
 
-    @Then("profile with valid profile user id fetched")
-    public void profileWithValidProfileUserIdFetched() {
+    @Then("profile with valid user id fetched")
+    public void profileWithValidUserIdFetched() {
         assertThat(buildValidProfileWithoutMedia(), equalTo(testProfile));
+    }
+
+    @Given("missing user id for fetching")
+    public void missingUserIdForFetching() {
+        testProfileUserId = missingUserId;
+    }
+
+    @When("fetching profile with missing user id")
+    public void fetchingProfileWithMissingUserId() {
+        try {
+            profileManagement.unRegisterProfile(testProfileUserId);
+        } catch (Exception ex) {
+            exception = ex;
+        }
+    }
+
+    @Then("$exceptionClassName should be thrown for missing user id when fetching")
+    public void exceptionShouldBeThrownForMissingUserIdWhenFetching(String exceptionClassName) throws ClassNotFoundException {
+        Class<?> exceptionClass = Class.forName(exceptionClassName);
+        if (exception != null && exceptionClass.isInstance(exception)) {
+            exception = null;
+        } else {
+            fail();
+        }
+    }
+
+    @Given("invalid user id for fetching")
+    public void invalidUserIdForFetching() {
+        testProfileUserId = inValidUserId;
+    }
+
+    @When("fetching profile with invalid user id")
+    public void fetchingProfileWithInvalidUserId() {
+        try {
+            profileManagement.unRegisterProfile(testProfileUserId);
+        } catch (Exception ex) {
+            exception = ex;
+        }
+    }
+
+    @Then("$exceptionClassName should be thrown for invalid user id when fetching")
+    public void exceptionShouldBeThrownForInvalidUserIdWhenFetching(String exceptionClassName) throws ClassNotFoundException {
+        Class<?> exceptionClass = Class.forName(exceptionClassName);
+        if (exception != null && exceptionClass.isInstance(exception)) {
+            exception = null;
+        } else {
+            fail();
+        }
     }
 }
