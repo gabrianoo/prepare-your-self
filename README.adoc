@@ -225,12 +225,10 @@ Package-by-feature uses packages to reflect the feature set. It places all items
                                   .build()
                   ).build();
       }
-
       @When("update profile with valid user and no media")
       public void whenUpdateProfileWithValidUserAndNoMedia() {
           profileManagement.updateProfile(testProfile);
       }
-
       @Then("profile with valid user and no media updated")
       public void thenProfileWithValidUserAndNoMediaUpdated() {
           assertThat(buildValidProfileWithoutMedia(), equalTo(testProfile));
