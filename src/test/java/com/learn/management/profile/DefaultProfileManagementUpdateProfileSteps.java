@@ -40,7 +40,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
     @PostConstruct
     public void initializeDefaultProfileManagementUpdateProfileSteps() {
         doReturn(buildValidUser()).
-                when(userService).createUser(
+                when(userService).updateUser(
                 UserBusinessObject.newBuilder()
                         .userId(validUserId)
                         .userFirstName(validUserFirstName)
@@ -48,7 +48,7 @@ public class DefaultProfileManagementUpdateProfileSteps {
                         .build()
         );
         doReturn(buildValidMedia()).
-                when(mediaService).createMedia(
+                when(mediaService).updateMedia(
                 MediaBusinessObject.newBuilder()
                         .mediaId(validMediaId)
                         .mediaName(validMediaName)
