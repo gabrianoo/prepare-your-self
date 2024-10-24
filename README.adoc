@@ -2,7 +2,7 @@
 
 == Build Status
 
-https://codeship.com/projects/66258[ image:https://codeship.com/projects/dde44650-a40e-0132-3084-2e02871ce1a0/status?branch=master[Codeship Status for gabrianoo/prepare-your-self]]
+TODO
 
 == Use Case
 
